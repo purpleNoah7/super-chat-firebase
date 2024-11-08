@@ -24,7 +24,7 @@ interface MessageProps {
 }
 
 function MessageChat(props: MessageProps) {
-  const { text, photoUrl, createdAt } = props.message;
+  const { text, photoUrl } = props.message;
   const messageContainerClass =
     props.message.uuid === auth.currentUser?.uid
       ? "flex items-end justify-end px-2 mb-5"
@@ -48,7 +48,7 @@ function MessageChat(props: MessageProps) {
 
 export default function ChatRoom({ db }: { db: any }) {
   const [messages, setMessages] = useState<DocumentData[]>();
-  const [inputMessage, setInputMessage] = useState<string>("");
+  const [inputMessage, setInputMessage] = useState<string>();
   const dummy = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const messagesCollection = collection(db, "messages");
@@ -101,7 +101,7 @@ export default function ChatRoom({ db }: { db: any }) {
       <div className="flex justify-between items-center gap-3 mb-3 mx-5 mt-5 bg">
         <input
           className="text-black p-2 rounded-full  w-full h-10 "
-          value={inputMessage}
+          value={inputMessage || ""}
           onChange={(e) => {
             setInputMessage(e.target.value);
           }}

@@ -11,8 +11,8 @@ import { app, auth } from "./firebase";
 export default function Home() {
   const db = getFirestore(app);
   const [user, loading] = useAuthState(auth);
-  const [signinLoading, setSigninLoading] = useState<boolean>(false);
-
+  const [signinLoading, setSigninLoading] = useState<boolean>();
+  
   const signinWithGoogle = async () => {
     setSigninLoading(true);
     try {

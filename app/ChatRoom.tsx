@@ -71,6 +71,7 @@ export default function ChatRoom({ db }: { db: any }) {
         uuid: auth.currentUser?.uid,
         photoUrl: auth.currentUser?.photoURL,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        createdBy: auth.currentUser?.displayName,
       };
       const messages = collection(db, "messages");
       await addDoc(messages, message);
